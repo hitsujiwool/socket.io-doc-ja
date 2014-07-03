@@ -127,7 +127,9 @@ Now that you have multiple Socket.IO nodes accepting connections, if you want to
 
 さて、接続を受け取る複数の Socket.IO ノードの準備ができたわけですが、もし全員（あるいは特定のルームにいる全員）にイベントをブロードキャストしたい場合、何らかの方法を使ったプロセス同士／コンピュータ同士のメッセージのやりとりが必要になります。
 
+<!--
 The interface in charge of routing messages is what we call the Adapter. You can implement your own on top of the socket.io-adapter (by inheriting from it) or you can use the one we provide on top of Redis: socket.io-redis:
+-->
 
 Socket.IO では、メッセージのルーティングに対して責任を持つようなインターフェースを `Adapter` と呼んでいます。[socket.io-adapter](https://github.com/automattic/socket.io-adapter) を継承することで、自分だけの adapter を実装したり、[Redis](http://redis.io/) 上で実装された [socket.io-redis](https://github.com/automattic/socket.io-redis) が提供されているので、これを利用するのもよいでしょう。
 
