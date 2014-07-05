@@ -20,7 +20,7 @@ Creates a new Server. Works with and without new:
 
 新しい `Server` を生成します。`new` はあってもなくても動作します。
 
-```
+```javascript
 var io = require('socket.io')();
 // or
 var Server = require('socket.io');
@@ -97,7 +97,7 @@ This method has no effect after attach is called.
 
 `attach` が呼び出された後は、このメソッドを実行しても意味はありません。
 
-```
+```javascript
 // サーバと `serveClient` オプションを渡す
 var io = require('socket.io')(http, { serveClient: false });
 
@@ -256,7 +256,7 @@ equivalent:
 
 接続している全てのクライアントにイベントを emit します。以下の 2 つは同等です。
 
-```
+```javascript
 var io = require('socket.io')();
 io.sockets.emit('an event sent to all connected clients');
 io.emit('an event sent to all connected clients');
@@ -341,7 +341,7 @@ middleware.
 
 ミドルウェアを登録します。ミドルウェアは `Socket` が接続されるたびに実行される関数で、socket と、次に登録されたミドルウェアを実行する関数を引数に受け取ります。
 
-```
+```javascript
 var io = require('socket.io')();
 io.use(function(socket, next){
   if (socket.request.headers.cookie) return next();
@@ -440,7 +440,7 @@ functions can’t be serialized/deserialized.
 
 `Buffer` を始めとした全てのデータ構造に対応しています。JavaScript の関数はシリアライズ／デシリアライズできません。
 
-```
+```javascript
 var io = require('socket.io')();
 io.on('connection', function(socket){
   socket.emit('an event', { some: 'data' });
@@ -517,7 +517,7 @@ To emit to multiple rooms, you can call to several times.
 
 複数のルームに emit するには `to` を複数回呼び出します。
 
-```
+```javascript
 var io = require('socket.io')();
 io.on('connection', function(socket){
   socket.to('others').emit('an event', { some: 'data' });

@@ -48,7 +48,7 @@ or in the browser:
 
 ブラウザの場合は
 
-```
+```javascript
 localStorage.debug='*';
 ```
 

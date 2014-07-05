@@ -24,7 +24,7 @@ You can give a Socket.io server arbitrary functions via io.use() that are run wh
 
 `io.use()` を使って任意の関数を渡すことができます。関数は Socket.io サーバがソケットの生成する際に実行されます。次の例を見て下さい。
 
-```
+```javascript
 var srv = http();
 var sio = require('socket.io')(srv);
 var run = 0;
@@ -49,7 +49,7 @@ The old io.set() and io.get() methods are deprecated and only supported for back
 
 これにより、ミドルウェア経由でよりすっきりとした認証を行えます。古い `io.set()` や `io.get()` のメソッドは非推奨となり、後方互換性を維持するためのみにサポートされます。古い認証のサンプルコードをミドルウェアスタイルに書き換えたものが以下のコードです。
 
-```
+```javascript
 io.set('authorization', function (handshakeData, callback) {
   // make sure the handshake data looks good
   callback(null, true); // error first, 'authorized' boolean second
@@ -58,7 +58,7 @@ io.set('authorization', function (handshakeData, callback) {
 
 は
 
-```
+```javascript
 io.use(function(socket, next) {
   var handshakeData = socket.request;
   // make sure the handshake data looks good as before
@@ -75,7 +75,7 @@ io.use(function(socket, next) {
 
 ### ネームスペースごとに認証するには？
 
-```
+```javascript
 io.of('/namespace').use(function(socket, next) {
   var handshakeData = socket.request;
   next();
@@ -143,13 +143,13 @@ In general there are some new shortcuts for common things. The old versions shou
 
 これまでは
 
-```
+```javascript
 io.sockets.emit('eventname', 'eventdata');
 ```
 
 現在は
 
-```
+```javascript
 io.emit('eventname', 'eventdata');
 ```
 
@@ -167,7 +167,7 @@ Neat. Note that in both cases, these messages reach all clients connected to the
 
 これまでは
 
-```
+```javascript
 var io = require('socket.io');
 var socket = io.listen(80, { /* options */ });
 ```
@@ -176,7 +176,7 @@ var socket = io.listen(80, { /* options */ });
 
 現在は
 
-```
+```javascript
 var io = require('socket.io');
 var socket = io({ /* options */ });
 ```
@@ -216,7 +216,7 @@ The socket.io-client manager (lib/manager.js) emits 'connect_error', 'connect_ti
 
 socket.io-client manager (lib/manager.js) は `connect_error`, `connect_timeout`, `open`, `close`, `reconnect_failed`, `reconnect_attempt`, `reconnect_error` のイベントを Emitter 経由で emit します（socket.io 経由ではありません）。これらのイベントを受け取るには、socket に manager を渡して、以下のようにリッスンします。
 
-```
+```javascript
 var manager = io.Manager('url', { /* options */ });
 var socket = manager.socket('/namespace');
 manager.on('event_name_like_reconnect_attempt', function() {
@@ -237,7 +237,7 @@ Instead do configuration in server initialization like this:
 
 代わりにサーバの初期化時に以下のように設定します。
 
-```
+```javascript
 var socket = require('socket.io')({
   // options go here
 });
@@ -269,7 +269,7 @@ Parsing is now class based and asynchronous. Instead of returning a single encod
 
 パーズはクラスベースで非同期になりました。エンコードされた 1 つの文字列を返す代わりに、`encode()` はコールバックに対して、エンコードされたパケットを要素とする配列を渡して呼び出します。各パケットは順序を保ったままトランスポートに書き込まれるべきです。より柔軟で、バイナリデータの転送にも対応できるようになりました。以下に例を挙げます。
 
-```
+```javascript
 var encoding = parser.encode(packet);
 console.log(encoding); // fully encoded packet
 ```
@@ -278,7 +278,7 @@ console.log(encoding); // fully encoded packet
 
 は
 
-```
+```javascript
 var encoder = new parser.Encoder();
 encoder.encode(packet, function(encodings) {
   for (var i = 0; i &lt; encodings.length; i++) {
@@ -299,7 +299,7 @@ Decoding takes things a step further and is event-based. This is done because so
 
 デコードのプロセスは以前よりも踏み込んだ、イベントベースなものとなりました。というのも一部の（バイナリを含んだ）オブジェクトは、分割された状態でエンコード／デコードされるからです。
 
-```
+```javascript
 var packet = parser.decode(decoding);
 console.log(packet); // formed socket.io packet to handle
 ```
@@ -308,7 +308,7 @@ console.log(packet); // formed socket.io packet to handle
 
 は
 
-```
+```javascript
 var decoder = new parser.Decoder();
 decoder.on('decoded', function(packet) {
   console.log(packet); // formed socket.io packet to handle

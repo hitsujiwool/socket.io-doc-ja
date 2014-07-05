@@ -26,7 +26,7 @@ To illustrate why this is needed, consider the example of emitting an event to a
 
 このような仕組みが必要な理由を説明する 1 つの例として、接続している全てのクライアントにイベントを emit する例を見てみます。
 
-```
+```javascript
 io.emit('hi', 'all sockets');
 ```
 
@@ -133,7 +133,7 @@ The interface in charge of routing messages is what we call the Adapter. You can
 
 Socket.IO では、メッセージのルーティングに対して責任を持つようなインターフェースを `Adapter` と呼んでいます。[socket.io-adapter](https://github.com/automattic/socket.io-adapter) を継承することで、自分だけの adapter を実装したり、[Redis](http://redis.io/) 上で実装された [socket.io-redis](https://github.com/automattic/socket.io-redis) が提供されているので、これを利用するのもよいでしょう。
 
-```
+```javascript
 var io = require('socket.io')(3000);
 var redis = require('socket.io-redis');
 io.adapter(redis({ host: 'localhost', port: 6379 }));
