@@ -298,7 +298,7 @@ To do this, simply pass a function as the last parameter of .send or .emit. What
 
 <!--### Server (app.js)-->
 
-### サ=バ (app.js)
+### サーバ (app.js)
 
 ```
 var io = require('socket.io').listen(80);
