@@ -190,9 +190,6 @@ reconnect that depend on this Manager.
 
 `reconnectionAttempts` で指定した試行回数の内に再接続ができなかった場合に発生するイベント
 
-The events above are also emitted on the individual sockets that
-reconnect that depend on this Manager.
-
 `Manager` に従属するそれぞれの socket もまた上記のイベントを発生させます。
 
 <!--## Manager#reconnection(v:Boolean):Manager-->
