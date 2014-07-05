@@ -29,11 +29,11 @@ var srv = http();
 var sio = require('socket.io')(srv);
 var run = 0;
 sio.use(function(socket, next){
-  run++; // 0 -&gt; 1
+  run++; // 0 -> 1
   next();
 });
 sio.use(function(socket, next) {
-  run++; // 1 -&gt; 2
+  run++; // 1 -> 2
   next();
 });
 var socket = require('socket.io-client')();
@@ -281,7 +281,7 @@ console.log(encoding); // fully encoded packet
 ```
 var encoder = new parser.Encoder();
 encoder.encode(packet, function(encodings) {
-  for (var i = 0; i &lt; encodings.length; i++) {
+  for (var i = 0; i < encodings.length; i++) {
     console.log(encodings[i]); // encoded parts of the packet
   }
 });
