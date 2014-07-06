@@ -32,7 +32,7 @@ This namespace is identified by io.sockets or simply io:
 
 このネームスペースは `io.sockets` あるいは単に `io` によって識別されます。
 
-```
+```javascript
 // the following two will emit to all the sockets connected to `/`
 io.sockets.emit('hi', 'everyone');
 io.emit('hi', 'everyone'); // short form
@@ -44,7 +44,7 @@ Each namespace emits a connection event that receives each Socket instance as a 
 
 それぞれのネームスペースは `Socket` インスタンスをコールバックの引数に取る `connection` イベントを emit します。
 
-```
+```javascript
 io.on('connection', function(socket){
   socket.on('disconnect', function(){ });
 });
@@ -60,7 +60,7 @@ To set up a custom namespace, you can call the of function on the server-side:
 
 独自のネームスペースを設定する場合には、サーバサイドで `of` を呼び出します。
 
-```
+```javascript
 var nsp = io.of('/my-namespace');
 nsp.on('connection', function(socket){
   console.log('someone connected'):
@@ -74,7 +74,7 @@ On the client side, you tell Socket.IO client to connect to that namespace:
 
 クライアントサイドでは、そのネームスペースに接続するようSocket.IO のクライアントに指定してやります。
 
-```
+```javascript
 var socket = io('/my-namespace');
 ```
 
@@ -104,7 +104,7 @@ You can call join to subscribe the socket to a given channel:
 
 socket に特定のチャネルを購読させるには、`join` を呼び出します。
 
-```
+```javascript
 io.on('connection', function(socket){
   socket.join('some room');
 });
@@ -116,7 +116,7 @@ And then simply use to or in (they are the same) when broadcasting or emitting:
 
 ブロードキャストしたり emit する場合には `or` や `in` （両者は同じものです）を用います。
 
-```
+```javascript
 io.to('some room').emit('some event'):
 ```
 
@@ -142,7 +142,7 @@ This makes it easy to broadcast messages to other sockets:
 
 こうすることで、他の socket に対してメッセージを簡単にブロードキャストできます。
 
-```
+```javascript
 io.on('connection', function(socket){
   socket.on('say to someone', function(id, msg){
     socket.broadcast.to(id).emit('my message', msg);
@@ -191,7 +191,7 @@ By implementing the Redis Adapter:
 
 Redis の `Adapter` を実装すると
 
-```
+```javascript
 var io = require('socket.io')(3000);
 var redis = require('socket.io-redis');
 io.adapter(redis({ host: 'localhost', port: 6379 }));
@@ -203,7 +203,7 @@ you can then emit messages from any other process to any channel
 
 好きなプロセスから好きなチャネルに対してメッセージを emit できるようになります。
 
-```
+```javascript
 var io = require('socket.io-emitter')();
 setInterval(function(){
   io.emit('time', new Date);

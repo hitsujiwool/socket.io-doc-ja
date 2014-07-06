@@ -20,7 +20,7 @@ $ npm install socket.io
 
 ### サーバ (app.js)
 
-```
+```javascript
 var app = require('http').createServer(handler)
 var io = require('socket.io')(app);
 var fs = require('fs');
@@ -52,7 +52,7 @@ io.on('connection', function (socket) {
 
 ### クライアント (index.html)
 
-```
+```html
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io('http://localhost');
@@ -71,7 +71,7 @@ io.on('connection', function (socket) {
 
 ### サーバ (app.js)
 
-```
+```javascript
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
@@ -94,7 +94,7 @@ io.on('connection', function (socket) {
 
 ### クライアント (index.html)
 
-```
+```html
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io.connect('http://localhost');
@@ -113,7 +113,7 @@ io.on('connection', function (socket) {
 
 ### サーバ (app.js)
 
-```
+```javascript
 var app = require('express').createServer();
 var io = require('socket.io')(app);
 
@@ -135,7 +135,7 @@ io.on('connection', function (socket) {
 
 ### クライアント (index.html)
 
-```
+```html
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io.connect('http://localhost');
@@ -160,7 +160,7 @@ Socket.IO ではカスタムイベントを送信／受信することができ�
 
 ### サーバ
 
-```
+```javascript
 // io.listen(<port>) が http サーバを立ち上げることに注意
 var io = require('socket.io')(80);
 
@@ -197,7 +197,7 @@ This has the benefit of multiplexing a single connection. Instead of socket.io u
 
 ### サーバ (app.js)
 
-```
+```javascript
 var io = require('socket.io').listen(80);
 var chat = io
   .of('/chat')
@@ -223,15 +223,15 @@ var news = io
 
 ### クライアント (index.html)
 
-```
+```html
 <script>
   var chat = io.connect('http://localhost/chat')
     , news = io.connect('http://localhost/news');
-  
+
   chat.on('connect', function () {
     chat.emit('hi!');
   });
-  
+
   news.on('news', function () {
     news.emit('woot');
   });
@@ -264,7 +264,7 @@ In that case, you might want to send those messages as volatile messages.
 
 ### サーバ
 
-```
+```javascript
 var io = require('socket.io').listen(80);
 
 io.sockets.on('connection', function (socket) {
@@ -300,7 +300,7 @@ To do this, simply pass a function as the last parameter of .send or .emit. What
 
 ### サーバ (app.js)
 
-```
+```javascript
 var io = require('socket.io').listen(80);
 
 io.sockets.on('connection', function (socket) {
@@ -331,7 +331,7 @@ To broadcast, simply add a broadcast flag to emit and send method calls. Broadca
 
 <!--### Server-->
 
-```
+```javascript
 var io = require('socket.io').listen(80);
 
 io.sockets.on('connection', function (socket) {
@@ -353,7 +353,7 @@ WebSocket のセマンティクスを使うだけ、という使い方も可能�
 
 ### サーバ (app.js)
 
-```
+```javascript
 var io = require('socket.io').listen(80);
 
 io.sockets.on('connection', function (socket) {
@@ -366,7 +366,7 @@ io.sockets.on('connection', function (socket) {
 
 ### クライアント (index.html)
 
-```
+```html
 <script>
   var socket = io('http://localhost/');
   socket.on('connect', function () {
