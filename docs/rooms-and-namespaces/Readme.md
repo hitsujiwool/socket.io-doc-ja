@@ -114,7 +114,7 @@ io.on('connection', function(socket){
 And then simply use to or in (they are the same) when broadcasting or emitting:
 -->
 
-ブロードキャストしたり emit する場合には `or` や `in` （両者は同じものです）を用います。
+ブロードキャストしたり emit する場合には `to` や `in` （両者は同じものです）を用います。
 
 ```javascript
 io.to('some room').emit('some event'):
