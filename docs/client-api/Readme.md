@@ -13,7 +13,7 @@ Exposed as the io namespace in the standalone build, or the result
 of calling require('socket.io-client').
 -->
 
-スタンドアローンなビルドの場合は、`io` という名前空間に、あるいは `requiare('socket.io-client')` で expose されます。
+スタンドアローンなビルドの場合は、`io` という名前空間に、あるいは `require('socket.io-client')` で expose されます。
 
 <!--
 When called, it creates a new Manager for the given URL, and attempts
